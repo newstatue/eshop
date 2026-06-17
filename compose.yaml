@@ -1,0 +1,47 @@
+services:
+  mysql:
+    image: 'mysql:latest'
+    environment:
+      - 'MYSQL_DATABASE=eshop'
+      - 'MYSQL_PASSWORD=secret'
+      - 'MYSQL_ROOT_PASSWORD=verysecret'
+      - 'MYSQL_USER=myuser'
+    ports:
+      - '3306:3306'
+
+  redis:
+    image: 'redis:latest'
+    ports:
+      - '6379:6379'
+
+  # RocketMQ 名字服务
+  namesrv:
+    image: apache/rocketmq:5.3.1
+    container_name: rmqnamesrv
+    ports:
+      - '9876:9876'
+    command: sh mqnamesrv
+
+  # RocketMQ Broker
+  broker:
+    image: apache/rocketmq:5.3.1
+    container_name: rmqbroker
+    ports:
+      - '10909:10909'
+      - '10911:10911'
+    environment:
+      - NAMESRV_ADDR=namesrv:9876
+    command: sh mqbroker -n namesrv:9876 autoCreateTopicEnable=true
+    depends_on:
+      - namesrv
+
+  # RocketMQ 控制台（可视化面板，可选）
+  rocketmq-dashboard:
+    image: apacherocketmq/rocketmq-dashboard:latest
+    container_name: rmq-dashboard
+    ports:
+      - '8080:8080'
+    environment:
+      - JAVA_OPTS=-Drocketmq.namesrv.addr=namesrv:9876
+    depends_on:
+      - namesrv

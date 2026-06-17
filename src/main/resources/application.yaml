@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: eshop
+
+  # ===== 数据库 =====
+  datasource:
+    url: jdbc:mysql://localhost:3306/eshop?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: myuser
+    password: secret
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # ===== Redis =====
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:init.sql
+
+# ===== MyBatis-Plus =====
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+# ===== RocketMQ =====
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    group: eshop-producer-group
+
+# ===== Sa-Token =====
+sa-token:
+  token-name: Authorization
+  timeout: 200
+
+# ===== 端口 =====
+server:
+  port: 8888
+biz:
+  sms:
+    expire: 300
+    interval: 60
