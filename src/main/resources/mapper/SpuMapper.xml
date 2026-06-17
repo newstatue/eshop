@@ -5,34 +5,32 @@
 <mapper namespace="com.evorsio.eshop.mapper.SpuMapper">
 
     <resultMap id="BaseResultMap" type="com.evorsio.eshop.domain.Spu">
-            <id property="id" column="id" />
-            <result property="name" column="name" />
-            <result property="description" column="description" />
-            <result property="status" column="status" />
-            <result property="deleted" column="deleted" />
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="description" column="description"/>
+        <result property="status" column="status"/>
+        <result property="deleted" column="deleted"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,name,description,status,deleted
+        id
+        ,name,description,status,deleted
     </sql>
 
     <select id="selectProductList" resultType="com.evorsio.eshop.vo.SpuVo">
-        select
-            sp.id as id,
-            sp.name as name,
-            sp.description as description,
-            min(sk.price) as minPrice,
-            (
-                select
-                    spi.url
+        select sp.id          as id,
+               sp.name        as name,
+               sp.description as description,
+               min(sk.price)  as minPrice,
+               (select spi.url
                 from spu_image spi
                 where spi.spu_id = sp.id
                   and spi.sort = 0
                   and spi.deleted = 0
-                limit 1
-            ) as mainImage
+                                 limit 1 ) as mainImage
         from spu sp
-            left join sku sk on sp.id = sk.spu_id
+            left join sku sk
+        on sp.id = sk.spu_id
             and sk.deleted = 0
         where sp.deleted = 0
           and sp.status = 1

@@ -39,7 +39,7 @@ rocketmq:
 # ===== Sa-Token =====
 sa-token:
   token-name: Authorization
-  timeout: 200
+  timeout: 2592000
 
 # ===== 端口 =====
 server:
@@ -48,3 +48,5 @@ biz:
   sms:
     expire: 300
     interval: 60
+  order:
+    cancel-delay-level: 3

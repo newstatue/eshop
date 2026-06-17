@@ -23,13 +23,13 @@ public class AuthController {
     private final UserService userService;
 
     @PostMapping("/send-code")
-    public R<TokenVo> sendCode(@Validated @RequestBody SendCodeVo vo){
+    public R<TokenVo> sendCode(@Validated @RequestBody SendCodeVo vo) {
         userService.sendCode(vo.getPhone());
         return R.ok();
     }
 
     @PostMapping("/login")
-    public R<TokenVo> login(@RequestBody LoginVo vo){
+    public R<TokenVo> login(@RequestBody LoginVo vo) {
         TokenVo r = userService.login(vo);
         return R.ok(r);
     }

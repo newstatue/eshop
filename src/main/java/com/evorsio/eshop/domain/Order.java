@@ -1,19 +1,22 @@
 package com.evorsio.eshop.domain;
 
-import com.baomidou.mybatisplus.annotation.*;
-
-import java.math.BigDecimal;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 /**
- * 
+ *
  * @TableName order
  */
-@TableName(value ="order")
+@TableName(value = "`order`")
 @Data
 public class Order {
     /**
-     * 
+     *
      */
     @TableId(type = IdType.AUTO)
     private Long id;
@@ -39,7 +42,7 @@ public class Order {
     private Integer status;
 
     /**
-     * 
+     *
      */
     @TableLogic
     private Integer deleted;

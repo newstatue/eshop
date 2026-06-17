@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "biz")
 public class BizProperties {
     private Sms sms = new Sms();
+    private Order order = new Order();
 
     @Data
     public static class Sms {
@@ -20,5 +21,10 @@ public class BizProperties {
         private long expire = 300;
         // 重发间隔（秒）
         private long interval = 60;
+    }
+
+    @Data
+    public static class Order {
+        private Integer cancelDelayLevel = 3;
     }
 }

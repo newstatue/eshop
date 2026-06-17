@@ -5,15 +5,16 @@
 <mapper namespace="com.evorsio.eshop.mapper.OrderMapper">
 
     <resultMap id="BaseResultMap" type="com.evorsio.eshop.domain.Order">
-            <id property="id" column="id" />
-            <result property="orderNo" column="order_no" />
-            <result property="userId" column="user_id" />
-            <result property="totalAmount" column="total_amount" />
-            <result property="status" column="status" />
-            <result property="deleted" column="deleted" />
+        <id property="id" column="id"/>
+        <result property="orderNo" column="order_no"/>
+        <result property="userId" column="user_id"/>
+        <result property="totalAmount" column="total_amount"/>
+        <result property="status" column="status"/>
+        <result property="deleted" column="deleted"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,order_no,user_id,total_amount,status,deleted
+        id
+        ,order_no,user_id,total_amount,status,deleted
     </sql>
 </mapper>

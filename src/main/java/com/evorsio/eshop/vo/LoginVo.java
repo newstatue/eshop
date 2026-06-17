@@ -20,6 +20,6 @@ public class LoginVo {
     // 验证码
     @NotBlank(message = "验证码不能为空")
     @Pattern(regexp = RegexPool.NUMBERS, message = "验证码必须是数字")
-    @Size(min = 6,max = 6,message = "验证码必须是6位")
+    @Size(min = 6, max = 6, message = "验证码必须是6位")
     private String code;
 }

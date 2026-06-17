@@ -5,15 +5,16 @@
 <mapper namespace="com.evorsio.eshop.mapper.SkuMapper">
 
     <resultMap id="BaseResultMap" type="com.evorsio.eshop.domain.Sku">
-            <id property="id" column="id" />
-            <result property="spuId" column="spu_id" />
-            <result property="spec" column="spec" />
-            <result property="price" column="price" />
-            <result property="stock" column="stock" />
-            <result property="deleted" column="deleted" />
+        <id property="id" column="id"/>
+        <result property="spuId" column="spu_id"/>
+        <result property="spec" column="spec"/>
+        <result property="price" column="price"/>
+        <result property="stock" column="stock"/>
+        <result property="deleted" column="deleted"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,spu_id,spec,price,stock,deleted
+        id
+        ,spu_id,spec,price,stock,deleted
     </sql>
 </mapper>

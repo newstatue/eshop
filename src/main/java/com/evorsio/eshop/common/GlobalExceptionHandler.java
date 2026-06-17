@@ -14,30 +14,30 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler(BizException.class)
-    public R<BizException> handleBizException(BizException e){
-        log.warn("业务异常: {}",e.getMessage());
+    public R<BizException> handleBizException(BizException e) {
+        log.warn("业务异常: {}", e.getMessage());
         return R.fail(e);
     }
 
     @ExceptionHandler(BindException.class)
-    public R<BizException> handleBindException(BindException e){
+    public R<BizException> handleBindException(BindException e) {
         String msg = e.getBindingResult().getFieldErrors()
-                .stream().map(f->f.getField() + ": "+f.getDefaultMessage())
+                .stream().map(f -> f.getField() + ": " + f.getDefaultMessage())
                 .findFirst()
                 .orElse(BizCode.PARAM_ERROR.getMessage());
-        log.warn("参数异常: {}",e.getMessage());
-        return R.fail(BizCode.PARAM_ERROR.getNum(),msg);
+        log.warn("参数异常: {}", e.getMessage());
+        return R.fail(BizCode.PARAM_ERROR.getNum(), msg);
     }
 
     @ExceptionHandler(NotLoginException.class)
-    public R<Void> handleNotLoginException(NotLoginException e){
-        log.warn("未登录异常: {}",e.getMessage());
+    public R<Void> handleNotLoginException(NotLoginException e) {
+        log.warn("未登录异常: {}", e.getMessage());
         return R.fail(BizCode.NOT_LOGIN);
     }
 
     @ExceptionHandler(Exception.class)
-    public R<Void> handleException(Exception e){
-        log.error("系统异常",e);
+    public R<Void> handleException(Exception e) {
+        log.error("系统异常", e);
         return R.fail();
     }
 }

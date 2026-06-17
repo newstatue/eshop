@@ -5,13 +5,14 @@
 <mapper namespace="com.evorsio.eshop.mapper.UserMapper">
 
     <resultMap id="BaseResultMap" type="com.evorsio.eshop.domain.User">
-            <id property="id" column="id" />
-            <result property="phone" column="phone" />
-            <result property="nickname" column="nickname" />
-            <result property="deleted" column="deleted" />
+        <id property="id" column="id"/>
+        <result property="phone" column="phone"/>
+        <result property="nickname" column="nickname"/>
+        <result property="deleted" column="deleted"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,phone,nickname,deleted
+        id
+        ,phone,nickname,deleted
     </sql>
 </mapper>

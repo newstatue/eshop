@@ -1,21 +1,21 @@
 package com.evorsio.eshop.domain;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.math.BigDecimal;
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 /**
- * 
+ *
  * @TableName order_item
  */
-@TableName(value ="order_item")
+@TableName(value = "order_item")
 @Data
 public class OrderItem {
     /**
-     * 
+     *
      */
     @TableId(type = IdType.AUTO)
     private Long id;

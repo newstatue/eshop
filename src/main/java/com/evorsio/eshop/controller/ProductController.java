@@ -5,7 +5,10 @@ import com.evorsio.eshop.service.SpuService;
 import com.evorsio.eshop.vo.SpuDetailVo;
 import com.evorsio.eshop.vo.SpuVo;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -20,13 +23,13 @@ public class ProductController {
     private final SpuService spuService;
 
     @GetMapping("/list")
-    public R<List<SpuVo>> getProductList(){
+    public R<List<SpuVo>> getProductList() {
         List<SpuVo> list = spuService.getProductList();
         return R.ok(list);
     }
 
     @GetMapping("/{id}")
-    public R<SpuDetailVo> getProductDetail(@PathVariable Long id){
+    public R<SpuDetailVo> getProductDetail(@PathVariable Long id) {
         SpuDetailVo vo = spuService.getProductDetail(id);
         return R.ok(vo);
     }

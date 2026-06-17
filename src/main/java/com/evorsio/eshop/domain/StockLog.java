@@ -3,18 +3,19 @@ package com.evorsio.eshop.domain;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.util.Date;
 import lombok.Data;
 
+import java.util.Date;
+
 /**
- * 
+ *
  * @TableName stock_log
  */
-@TableName(value ="stock_log")
+@TableName(value = "stock_log")
 @Data
 public class StockLog {
     /**
-     * 
+     *
      */
     @TableId(type = IdType.AUTO)
     private Long id;
@@ -45,7 +46,7 @@ public class StockLog {
     private Integer afterQty;
 
     /**
-     * 
+     *
      */
     private Date createdAt;
 }

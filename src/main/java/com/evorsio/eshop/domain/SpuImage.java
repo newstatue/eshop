@@ -1,17 +1,20 @@
 package com.evorsio.eshop.domain;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 /**
- * 
+ *
  * @TableName spu_image
  */
-@TableName(value ="spu_image")
+@TableName(value = "spu_image")
 @Data
 public class SpuImage {
     /**
-     * 
+     *
      */
     @TableId(type = IdType.AUTO)
     private Long id;
@@ -32,7 +35,7 @@ public class SpuImage {
     private Integer sort;
 
     /**
-     * 
+     *
      */
     @TableLogic
     private Integer deleted;

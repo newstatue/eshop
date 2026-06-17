@@ -15,7 +15,7 @@ import java.util.List;
 @Configuration
 public class RedisScriptConfig {
     @Bean
-    public DefaultRedisScript<List> deductStockScript(){
+    public DefaultRedisScript<List> deductStockScript() {
         DefaultRedisScript<List> script = new DefaultRedisScript<>();
         script.setScriptSource(new ResourceScriptSource(
                 new ClassPathResource("lua/deduct_stock.lua")

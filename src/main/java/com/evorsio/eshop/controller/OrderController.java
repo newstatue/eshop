@@ -6,10 +6,7 @@ import com.evorsio.eshop.vo.CreatOrderVo;
 import com.evorsio.eshop.vo.OrderVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Evorsio
@@ -22,8 +19,14 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping("/create")
-    public R<OrderVo> createOrder(@Validated @RequestBody CreatOrderVo vo){
+    public R<OrderVo> createOrder(@Validated @RequestBody CreatOrderVo vo) {
         OrderVo o = orderService.createOrder(vo);
         return R.ok(o);
+    }
+
+    @PostMapping("/pay/{orderNo}")
+    public R<Void> payOrder(@PathVariable String orderNo) {
+        orderService.payOrder(orderNo);
+        return R.ok();
     }
 }

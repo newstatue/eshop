@@ -1,6 +1,5 @@
 package com.evorsio.eshop.vo;
 
-import cn.hutool.json.JSONUtil;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 

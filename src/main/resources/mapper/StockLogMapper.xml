@@ -5,17 +5,18 @@
 <mapper namespace="com.evorsio.eshop.mapper.StockLogMapper">
 
     <resultMap id="BaseResultMap" type="com.evorsio.eshop.domain.StockLog">
-            <id property="id" column="id" />
-            <result property="skuId" column="sku_id" />
-            <result property="orderNo" column="order_no" />
-            <result property="beforeQty" column="before_qty" />
-            <result property="deductQty" column="deduct_qty" />
-            <result property="afterQty" column="after_qty" />
-            <result property="createdAt" column="created_at" />
+        <id property="id" column="id"/>
+        <result property="skuId" column="sku_id"/>
+        <result property="orderNo" column="order_no"/>
+        <result property="beforeQty" column="before_qty"/>
+        <result property="deductQty" column="deduct_qty"/>
+        <result property="afterQty" column="after_qty"/>
+        <result property="createdAt" column="created_at"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,sku_id,order_no,before_qty,deduct_qty,after_qty,
+        id
+        ,sku_id,order_no,before_qty,deduct_qty,after_qty,
         created_at
     </sql>
 </mapper>

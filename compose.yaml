@@ -31,7 +31,9 @@ services:
       - '10911:10911'
     environment:
       - NAMESRV_ADDR=namesrv:9876
-    command: sh mqbroker -n namesrv:9876 autoCreateTopicEnable=true
+    volumes:
+      - ./broker.conf:/home/rocketmq/broker.conf
+    command: sh mqbroker -n namesrv:9876 -c /home/rocketmq/broker.conf
     depends_on:
       - namesrv
 
@@ -40,7 +42,7 @@ services:
     image: apacherocketmq/rocketmq-dashboard:latest
     container_name: rmq-dashboard
     ports:
-      - '8080:8080'
+      - '8080:8082'
     environment:
       - JAVA_OPTS=-Drocketmq.namesrv.addr=namesrv:9876
     depends_on:

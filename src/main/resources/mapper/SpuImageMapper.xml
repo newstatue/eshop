@@ -5,14 +5,15 @@
 <mapper namespace="com.evorsio.eshop.mapper.SpuImageMapper">
 
     <resultMap id="BaseResultMap" type="com.evorsio.eshop.domain.SpuImage">
-            <id property="id" column="id" />
-            <result property="spuId" column="spu_id" />
-            <result property="url" column="url" />
-            <result property="sort" column="sort" />
-            <result property="deleted" column="deleted" />
+        <id property="id" column="id"/>
+        <result property="spuId" column="spu_id"/>
+        <result property="url" column="url"/>
+        <result property="sort" column="sort"/>
+        <result property="deleted" column="deleted"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,spu_id,url,sort,deleted
+        id
+        ,spu_id,url,sort,deleted
     </sql>
 </mapper>

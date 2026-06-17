@@ -29,10 +29,10 @@ public class StockInitRunner implements ApplicationRunner {
         List<Sku> skus = skuMapper.selectList(null);
         for (Sku sku : skus) {
             redisTemplate.opsForValue().set(
-                    BizConstants.REDIS_KEY_SKU_STOCK_PREFIX+sku.getId(),
+                    BizConstants.REDIS_KEY_SKU_STOCK_PREFIX + sku.getId(),
                     String.valueOf(sku.getStock())
             );
         }
-      log.info("库存写入Redis成功");
+        log.info("库存写入Redis成功");
     }
 }

@@ -9,8 +9,8 @@ import com.evorsio.eshop.common.BizConstants;
 import com.evorsio.eshop.common.BizException;
 import com.evorsio.eshop.common.BizProperties;
 import com.evorsio.eshop.domain.User;
-import com.evorsio.eshop.service.UserService;
 import com.evorsio.eshop.mapper.UserMapper;
+import com.evorsio.eshop.service.UserService;
 import com.evorsio.eshop.vo.LoginVo;
 import com.evorsio.eshop.vo.TokenVo;
 import lombok.RequiredArgsConstructor;
@@ -22,15 +22,15 @@ import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
 
 /**
-* @author Admin
-* @description 针对表【user】的数据库操作Service实现
-* @createDate 2026-06-16 00:58:31
-*/
+ * @author Admin
+ * @description 针对表【user】的数据库操作Service实现
+ * @createDate 2026-06-16 00:58:31
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl extends ServiceImpl<UserMapper, User>
-    implements UserService{
+        implements UserService {
 
     private final StringRedisTemplate redisTemplate;
     private final BizProperties bizProperties;
@@ -40,13 +40,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         long expire = bizProperties.getSms().getExpire();
         long interval = bizProperties.getSms().getInterval();
         // 1. 查看Redis中是否已有验证码
-        String key = BizConstants.REDIS_KEY_SMS_CODE_PREFIX+phone;
+        String key = BizConstants.REDIS_KEY_SMS_CODE_PREFIX + phone;
         String existCode = redisTemplate.opsForValue().get(key);
 
         // 2. 已有验证码
-        if(existCode != null){
+        if (existCode != null) {
             Long ttl = redisTemplate.getExpire(key, TimeUnit.SECONDS);
-            if(ttl > expire - interval){
+            if (ttl > expire - interval) {
                 throw new BizException(BizCode.SMS_CODE_FREQUENTLY);
             }
         }
@@ -55,10 +55,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         String code = RandomUtil.randomNumbers(6);
 
         // 4. 存入redis
-        redisTemplate.opsForValue().set(key,code,expire,TimeUnit.SECONDS);
+        redisTemplate.opsForValue().set(key, code, expire, TimeUnit.SECONDS);
 
         // TODO: 5. 发送短信
-        log.info("用户: {}的验证码: {}",phone,code);
+        log.info("用户: {}的验证码: {}", phone, code);
     }
 
     @Override
@@ -71,7 +71,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         String cachedCode = redisTemplate.opsForValue().get(key);
 
         // 2. 校验验证码
-        if(cachedCode == null || !cachedCode.equals(code)){
+        if (cachedCode == null || !cachedCode.equals(code)) {
             throw new BizException(BizCode.SMS_CODE_ERROR);
         }
 
@@ -79,8 +79,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         redisTemplate.delete(key);
 
         // 4. 查询用户，不存在自动注册
-        User user = lambdaQuery().eq(User::getPhone,phone).one();
-        if(user == null){
+        User user = lambdaQuery().eq(User::getPhone, phone).one();
+        if (user == null) {
             user = new User();
             user.setPhone(phone);
             user.setNickname(BizConstants.USER_NAME_PREFIX + phone.substring(phone.length() - 4));
