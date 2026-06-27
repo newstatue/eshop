@@ -29,7 +29,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public R<TokenVo> login(@RequestBody LoginVo vo) {
+    public R<TokenVo> login(@Validated @RequestBody LoginVo vo) {
         TokenVo r = userService.login(vo);
         return R.ok(r);
     }
